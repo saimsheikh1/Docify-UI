@@ -1,71 +1,197 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
+  background-color: black; /* Dark background */
+  font-family: 'Arial', sans-serif;
+  color: #fff;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  width: 100vw;
+  padding: 0px; /* Add some padding around */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Main Chat Container */
+.main-chat-container {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  justify-content: flex-end;
+  border-radius: 50px; /* Move chatbox to the right */
+}
+
+/* Chat Box */
+/* Chat Box */
+.chat-box {
+  width: 50vw; /* Chatbox takes 50% of the screen width */
+  height: 100vh; /* Set height for chatbox */
+  background-color: black; /* Sky blue background for Docify chat */
+  padding: 20px;
+  border-radius: 25px; /* Increased border-radius */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute; /* Absolute positioning to place it on the right */
+  right: 0; /* Moves chatbox to the rightmost part */
+  border: none;
+  overflow: hidden; /* Hide overflow in the box */
+}
+
+/* Title */
+.chat-title {
+  font-size: 1.8em;
+  color: white; /* White color for chat-title */
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Messages Section */
+.messages {
+  flex: 1; /* Allow messages to take remaining space */
+  overflow-y: auto; /* Ensure chat messages scroll */
+  padding: 15px;
+  background-color: #333; /* Dark background for the messages */
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* Individual Message Styling */
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.message.User {
+  align-items: flex-end; /* Align user messages to the right */
+}
+
+.message .sender {
+  font-weight: bold;
+  color: white;
+  margin-bottom: 5px; /* Space between the sender name and message */
+  font-size: 0.9em;
+}
+
+.message .message-text {
+  display: inline-block;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 1.1em;
+  max-width: 70%;
+  word-wrap: break-word;
+  line-height: 1.4;
+}
+
+.message.User .message-text {
+  background-color: white; /* Transparent background for user messages */
+  color: black;
+  text-align: right; /* Move the user message to the right */
+}
+
+.message.Docify .message-text {
+  background-color: black; /* Sky blue for Docify responses */
+  color: white;
+  text-align: left; /* Align Docify's messages to the left */
+}
+
+/* Input and Button Styles */
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px;
+  margin-right: 10px;
+  border-radius: 15px;
+  border: 1px solid #444;
+  background-color: #444;
+  color: white;
+  font-size: 1.1em;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 15px;
   font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-weight: bold;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.send-btn {
+  border-radius: 40px; /* Border radius for the button */
+  color: white;
+  padding: 12px 20px; /* Add padding to the button */
+  margin-left: 10px; /* Space between button and input */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  /* Ensure the button has no width constraints */
+  width: auto;
+  display: inline-block;
+  background-color: black; /* Lighter sky blue for hover */
+ 
+}
+
+.send-btn:hover {
+  background-color: grey;
+}
+
+.end-chat-btn {
+  border-radius: 40px; /* Border radius for the button */
+  color: white;
+  padding: 12px 20px; /* Add padding to the button */
+  margin-left: 10px; /* Space between button and input */
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+  /* Ensure the button has no width constraints */
+  width: auto;
+  display: inline-block;
+  background-color: black; /* Lighter sky blue for hover */
+
+}
+
+.end-chat-btn:hover {
+  background-color: #e53935;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .chat-box {
+    width: 80vw;
+    height: 75vh;
   }
-  a:hover {
-    color: #747bff;
+
+  .chat-title {
+    font-size: 1.6em;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@media (max-width: 480px) {
+  .chat-title {
+    font-size: 1.4em;
+  }
+
+  .send-btn, .end-chat-btn {
+    padding: 8px 16px;
+    font-size: 0.9em;
   }
 }
